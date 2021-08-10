@@ -1,35 +1,15 @@
-import React from "react";
+import React from 'react'
+import UseSWR, { SWRConfig } from 'swr'
+const fetcher = url => fetch(url).then(r => {
+  return r.json()
+})
+export default function SongInfo() {
+  const { data, error } = UseSWR('http://188.40.244.179/api/nowplaying', fetcher,{refreshInterval:5000})
 
-export default class SongInfo extends React.Component {
-  state = {
-    loading: true,
-    person: null
-  };
-
-  async componentDidMount() {
-    const url = "http://188.40.244.179/api/nowplaying";
-    const response = await fetch(url);
-    const data = await response.json();
-    this.setState({ person: data[0], loading: false });
-    console.log(data[0].now_playing.song.text) 
-    
+  if (error) return <div>Error</div>
+  if (!data) return <div>loading...</div>
+  if (!data[0].now_playing.song.text) return <div>Nothing is playing</div>
+  return <div>{data[0].now_playing.song.text}</div>
+  
 }
 
-  render() {
-    
-    if (this.state.loading) {
-      return <div>{this.state.person}</div>;
-    }
-
-    if (!this.state.person.now_playing.song.text) {
-      return <div>Nothing is playing</div>;
-    }
-
-    return (
-      <div>
-        <div>{this.state.person.now_playing.song.text}</div>
-
-      </div>
-    );
-  }
-}
