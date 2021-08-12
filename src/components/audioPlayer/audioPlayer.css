@@ -1,0 +1,12 @@
+.audioPlayer{
+    display: flex;
+    width: 700px;
+}
+.playPauseButton{
+    border: none;
+    border-radius: 50px;
+    padding: 7px 10px;
+    background-color: #ffffff;
+    color: #555;
+    cursor: pointer;
+}
