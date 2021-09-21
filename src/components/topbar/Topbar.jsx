@@ -1,13 +1,21 @@
 import React from 'react'
 import "./topbar.css"
 import {NotificationsNone, Language, Settings } from '@material-ui/icons';
+import { Link } from 'react-router-dom';
+import { useAuth0 } from '@auth0/auth0-react';
+import JSONPretty from 'react-json-pretty';
 export default function Topbar() {
+    const { user, logout, isAuthenticated } = useAuth0();
+
     return (
+        isAuthenticated && (
+            
         <div classname="topbar">
             <div className="topbarwrapper">
                 <div className="topLeft">
-                    <span className="logo">VenityFM</span>
+
                 </div>
+                
                 <div className="topRight">
                     <div className="topbarIconContainer">
                         <NotificationsNone />
@@ -18,12 +26,16 @@ export default function Topbar() {
                         
                     </div>
                     <div className="topbarIconContainer">
-                        <Settings />
+                        <Settings onClick={() => logout()}/>
                         
                     </div>
-                    <img src="https://cdn.discordapp.com/attachments/776974960345874453/873946188083232848/Venity-New-logo.png" alt="" className="topAvatar" />
+                    
+                    <img src={user.picture} alt="" className="topAvatar" />
                 </div>
             </div>
         </div>
-    )
+        
+        
+    ))
+
 }

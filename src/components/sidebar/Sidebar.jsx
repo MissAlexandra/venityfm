@@ -1,13 +1,20 @@
 import "./Sidebar.css"
 import {LineStyle,Collections,Announcement,RemoveCircleOutline,FeaturedVideo,Message,Schedule,SettingsInputComponent,AssignmentInd,PostAdd,MailOutline} from "@material-ui/icons"
 import { Link } from "react-router-dom"
+import { useAuth0 } from '@auth0/auth0-react';
+import JSONPretty from 'react-json-pretty';
 
-export default function sidebar() {
+export default function Sidebar() {
+    const { isAuthenticated, user } = useAuth0();
     return (
+        isAuthenticated && (
         <div className="sidebar">
             <div className="sidebarWrapper">
                 <div className="sidebarMenu">
-                    <h3 className="sidebarTitle">Dashboard</h3>
+                    <h3 className="sidebarTitle">Welcome Back</h3>
+                    <h2 className="sidebarTitle">
+                        { user.name }
+                    </h2>
                     <ul className="sidebarList">
                         <Link to="/home">
                             <li className="sidebarListItem active">
@@ -81,5 +88,5 @@ export default function sidebar() {
             </div>
             
         </div>
-    )
+    ))
 }

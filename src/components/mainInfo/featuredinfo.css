@@ -1,23 +1,22 @@
 .featured{
     width: 100%;
     display: flex;
+    justify-content: space-evenly;
 }
 .featuredItem{
     flex: 4;
     margin: 0px 20px;
     justify-content: center;
-    padding: 20px;
+    padding: 10px;
     border-radius: 20px;
     -webkit-box-shadow: 0px 0px 11px -1px #0000; 
     box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
 }
-.featuredTitle{
-    flex: 4;
-    margin-right: 20px;
-    padding: 20px;
-    border-radius: 20px;
+.radioIcon1{
+    margin-left: 100px;
 
 }
+
 .featuredpresentercontainer{
     flex: 4;
     margin: 10px 0px;
